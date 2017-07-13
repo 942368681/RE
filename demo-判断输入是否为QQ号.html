@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			规则：
+				5~12位
+				纯数字
+				第一位不能是0
+		-->
+		<input type="text" id="txt" />
+		<input type="button" value="确定" id="btn" />
+		<script type="text/javascript">
+			var txt=document.getElementById('txt');
+			var btn=document.getElementById('btn');
+			var re=/^[1-9]\d{4,11}$/;
+			btn.onclick=function (){
+				if (re.test(txt.value)) {
+					alert('是QQ号');
+				} else{
+					alert('不是QQ号');
+				}
+			};
+		</script>
+	</body>
+</html>
