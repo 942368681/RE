@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			输入：中国坚定维护在南海的领土主权和海洋权益的同时，始终致力于同包括菲律宾在内的直接有关的当事国通过谈判磋商和平解决有关争议，致力于同东盟国家共同维护南海和平稳定
+			敏感词：中国、菲律宾、南海
+		-->
+		替换前：
+		<br />
+		<textarea name="" rows="10" cols="100"></textarea>
+		<br />
+		替换后：
+		<br />
+		<textarea name="" rows="10" cols="100"></textarea>
+		<br />
+		<input type="button" value="确定" id="btn"/>
+		<script type="text/javascript">
+			var txt=document.getElementsByTagName('textarea');
+			var btn=document.getElementById('btn');
+			var re=/中国|菲律宾|南海/g;
+			btn.onclick=function (){
+				txt[1].value=txt[0].value.replace(re,function (str){
+					var star='';
+					for (var i=0;i<str.length;i++) {
+						star+='*';
+					}
+					return star;
+				});
+			};
+		</script>
+	</body>
+</html>
