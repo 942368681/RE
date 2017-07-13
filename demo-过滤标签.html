@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			过滤掉标签后输出
+			例如：
+				输入 <h3 class="aaa">123123</h3>bbbccc
+				输出 123123bbbccc
+		-->
+		替换前：
+		<br />
+		<textarea name="" rows="10" cols="100"></textarea>
+		<br />
+		替换后：
+		<br />
+		<textarea name="" rows="10" cols="100"></textarea>
+		<br />
+		<input type="button" value="确定" id="btn"/>
+		<script type="text/javascript">
+			var txt=document.getElementsByTagName('textarea');
+			var btn=document.getElementById('btn');
+			var re=/<[^>]+>/g;
+			btn.onclick=function (){
+				txt[1].value=txt[0].value.replace(re,'');
+			};
+		</script>
+	</body>
+</html>
