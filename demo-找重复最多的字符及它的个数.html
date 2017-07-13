@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+				找到字符串中出现次数最多的字符和它的个数 
+			*/
+			var str='asddfaqaaaahytaaaaaajjnaaaaagjhhyaaaazsd';
+			var arr=str.split('');
+			str=arr.sort().join('');
+			var val='';
+			var index=0;
+			var re=/(\w)\1+/g;
+			str.replace(re,function ($0,$1){
+				if (index<$0.length) {
+					index=$0.length;
+					val=$1;
+				}
+			});
+			alert('重复最多的字符：'+val+' 个数：'+index);
+		</script>
+	</body>
+</html>
