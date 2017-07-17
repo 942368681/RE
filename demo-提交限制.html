@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="txt"/>
+		<input type="button" value="提交" id="btn"/>
+		<script type="text/javascript">
+			/*
+				输入年龄，必须16-101岁之间才可以提交，否则提示错误
+				规律：
+					16-19
+					20-29
+					.
+					.
+					.
+					90-99
+					100-101
+			*/
+			var btn = document.getElementById('btn');
+			var txt = document.getElementById('txt');
+			btn.onclick = function(){
+				var val = txt.value;
+				if(/^(1[6-9])$|^([2-9][0-9])$|^(10[01])$/.test(val)){
+					alert('提交成功!');
+				}else{
+					alert('提交失败!');
+				}
+		
+			}
+		</script>
+	</body>
+</html>
