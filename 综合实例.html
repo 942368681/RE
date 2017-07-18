@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			dl,dt,dd{
+				margin: 0;
+				padding: 0;
+			}
+			dt,dd{
+				float: left;
+			}
+			dl{
+				width: 100%;
+				height: 40px;
+				margin-bottom: 20px;
+			}
+			dt{
+				width: 100px;
+				height: 40px;
+				line-height: 40px;
+				font-size: 20px;
+			}
+			dd{
+				width: 210px;
+				height: 40px;
+			}
+			form{
+				position: relative;
+				width: 360px;
+				height: 300px;
+				margin: 200px auto;
+				border: 4px solid #333333;
+				border-radius: 10px;
+				padding: 40px;
+				background: #F1F1f1;
+			}
+			#btn{
+				width: 80px;
+				height: 40px;
+				line-height: 40px;
+				font-size: 20px;
+				position: absolute;
+				left: 50%;
+				margin-left: -40px;
+				bottom: 20px;
+				background: powderblue;
+				padding: 0;
+			}
+			input{
+				outline: none;
+				width: 230px;
+				height: 40px;
+				box-sizing: border-box;
+				border: 0;
+				border: 2px solid transparent;
+				font-size: 18px;
+				line-height: 40px;
+				padding-left: 10px;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="" id="box">
+			<dl>
+				<dt>QQ:</dt>
+				<dd><input type="text" class="txt" /></dd>
+			</dl>
+			<dl>
+				<dt>邮箱:</dt>
+				<dd><input type="text" class="txt" /></dd>
+			</dl>
+			<dl>
+				<dt>电话:</dt>
+				<dd><input type="text" class="txt" /></dd>
+			</dl>
+			<dl>
+				<dt>出生日期:</dt>
+				<dd><input type="text" class="txt" /></dd>
+			</dl>
+			<input type="button" value="注册" id="btn" />
+		</form>
+		<script type="text/javascript">
+			var txt=document.getElementsByClassName('txt');
+			var btn=document.getElementById('btn');
+			var box=document.getElementById('box');
+			var re1=/^[1-9]\d{4,13}$/;
+			var re2=/^[A-Za-z][\w\-\.]{5,19}@([0-9A-Za-z]{2,5}\.){1,3}[a-z]{1,3}$/;
+			var re3=/^1[358]\d{9}$/;
+			var date=new Date();
+			var year=date.getFullYear();
+			var month=date.getMonth()+1;
+			var day=date.getDate();
+			txt[0].oninput=function (){
+				var val=this.value;
+				this.style.borderColor='red';
+				if (re1.test(val)) {
+					this.style.borderColor='green';
+					this.onOff=true;
+				} else{
+					this.style.borderColor='red';
+					if (val=='') {
+						this.style.borderColor='';
+					}
+					this.onOff=false;
+				}
+			};
+			txt[1].oninput=function (){
+				var val=this.value;
+				this.style.borderColor='red';
+				if (re2.test(val)) {
+					this.style.borderColor='green';
+					this.onOff=true;
+				} else{
+					this.style.borderColor='red';
+					if (val=='') {
+						this.style.borderColor='';
+					}
+					this.onOff=false;
+				}
+			};
+			txt[2].oninput=function (){
+				var val=this.value;
+				this.style.borderColor='red';
+				if (re3.test(val)) {
+					this.style.borderColor='green';
+					this.onOff=true;
+				} else{
+					this.style.borderColor='red';
+					if (val=='') {
+						this.style.borderColor='';
+					}
+					this.onOff=false;
+				}
+			};
+			txt[3].oninput=function (){
+				var This=this;
+				var val=this.value;
+				this.style.borderColor='red';
+				val.replace(/^(\d+)\D+(\d+)\D+(\d+)\D?$/,function ($0,$1,$2,$3){
+					if ($1<year) {
+						if ($1%4!=0) {
+							//不是闰年
+							if ($2=='1'||$2=='3'||$2=='5'||$2=='7'||$2=='8'||$2=='10'||$2=='12') {
+								if ($3<32&&$3>0) {
+									This.style.borderColor='green';
+									This.onOff=true;
+								} else{
+									This.style.borderColor='red';
+									This.onOff=false;
+								}
+							} else if($2=='2') { 
+								if ($3<29&&$3>0) {
+									This.style.borderColor='green';
+									This.onOff=true;
+								} else{
+									This.style.borderColor='red';
+									This.onOff=false;
+								}
+							} else{
+								if ($3<31&&$3>0) {
+									This.style.borderColor='green';
+									This.onOff=true;
+								} else{
+									This.style.borderColor='red';
+									This.onOff=false;
+								}
+							}
+						} else{
+							//闰年
+							if ($2=='1'||$2=='3'||$2=='5'||$2=='7'||$2=='8'||$2=='10'||$2=='12') {
+								if ($3<32&&$3>0) {
+									This.style.borderColor='green';
+									This.onOff=true;
+								} else{
+									This.style.borderColor='red';
+									This.onOff=false;
+								}
+							} else if($2=='2') { 
+								if ($3<30&&$3>0) {
+									This.style.borderColor='green';
+									This.onOff=true;
+								} else{
+									This.style.borderColor='red';
+									This.onOff=false;
+								}
+							} else{
+								if ($3<31&&$3>0) {
+									This.style.borderColor='green';
+									This.onOff=true;
+								} else{
+									This.style.borderColor='red';
+									This.onOff=false;
+								}
+							}
+						}
+					}
+					if ($1==year) {
+						if ($2<month) {
+							if ($1%4!=0) {
+								//不是闰年
+								if ($2=='1'||$2=='3'||$2=='5'||$2=='7'||$2=='8'||$2=='10'||$2=='12') {
+									if ($3<32&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								} else if($2=='2') { 
+									if ($3<29&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								} else{
+									if ($3<31&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								}
+							} else{
+								//闰年
+								if ($2=='1'||$2=='3'||$2=='5'||$2=='7'||$2=='8'||$2=='10'||$2=='12') {
+									if ($3<32&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								} else if($2=='2') { 
+									if ($3<30&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								} else{
+									if ($3<31&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								}
+							}
+						}
+						if ($2==month&&$3<=day) {
+							if ($1%4!=0) {
+								//不是闰年
+								if ($2=='1'||$2=='3'||$2=='5'||$2=='7'||$2=='8'||$2=='10'||$2=='12') {
+									if ($3<32&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								} else if($2=='2') { 
+									if ($3<29&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								} else{
+									if ($3<31&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								}
+							} else{
+								//闰年
+								if ($2=='1'||$2=='3'||$2=='5'||$2=='7'||$2=='8'||$2=='10'||$2=='12') {
+									if ($3<32&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								} else if($2=='2') { 
+									if ($3<30&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								} else{
+									if ($3<31&&$3>0) {
+										This.style.borderColor='green';
+										This.onOff=true;
+									} else{
+										This.style.borderColor='red';
+										This.onOff=false;
+									}
+								}
+							}
+						}
+					}
+				});
+				if (val=='') {
+					this.style.borderColor='';
+					this.onOff=false;
+				}
+			};
+			for (var i=0;i<txt.length;i++) {
+				txt[i].onOff=false;
+			}
+			btn.onclick=function (){
+				var arr=[];
+				for (var i=0;i<txt.length;i++) {
+					if (!txt[i].onOff) {
+						arr.push(txt[i]);
+					}
+				}
+				if (arr.length==0) {
+					alert('提交成功！');
+				} else{
+					for (var i=0;i<arr.length;i++) {
+						arr[i].style.borderColor='red';
+					}
+				}
+			};
+		</script>
+	</body>
+</html>

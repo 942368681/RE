@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li class="li1 li2"></li>
+			<li class="li2"></li>
+			<li class="li2"></li>
+			<li class="li1 li2"></li>
+		</ul>
+		<script type="text/javascript">
+			function getByClass(sclass){
+				var arr=[];
+				var aEle=document.getElementsByTagName('*');
+				var re=new RegExp('\\b'+sclass+'\\b');
+				for (var i=0;i<aEle.length;i++) {
+					if (re.test(aEle[i].className)) {
+						arr.push(aEle[i]);
+					}
+				}
+				return arr;
+			};
+			var s=getByClass('li1');
+			for (var i=0;i<s.length;i++) {
+				s[i].style.background='red';
+			}
+		</script>
+	</body>
+</html>
